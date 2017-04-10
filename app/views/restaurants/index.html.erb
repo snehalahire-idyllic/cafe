@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+
+<h1>Restaurants</h1>
+<img alt="Restaurants_logo" src="/assets/hotel.jpg"/>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <!--<th>Ratings</th> -->
+      <!-- <th>Locality</th> -->
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%#= restaurant.ratings %></td>
+        <td><%#= restaurant.locality %></td>
+        <td><%= link_to 'Show', restaurant %></td>
+        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= form_tag restaurants_path, :method =>'get' do %>
+        <%= text_field_tag :search ,params[:search], placeholder: ' Find a Hotel'%>
+        <%= submit_tag "Search" , :name =>nil %>
+
+<% end %>
+
+<% if @restaurant_search_name %>
+  <% @restaurant_search_name.each do |x| %>
+    <%= x.name%>
+    <%= x.ratings%>
+    <%= x.locality%>
+  <% end %>
+<%end %>
+
+ 
+ <%= link_to 'New Restaurant', new_restaurant_path %>
+

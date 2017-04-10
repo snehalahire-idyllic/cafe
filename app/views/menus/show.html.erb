@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= menus.name %>
+</p>
+
+  <strong>Description:</strong>
+  <%= menus.description %>
+</p>
+
+<!-- <div id = "items_wrapper">
+	<%= render "items/index" ,{items:@menu.items}%>
+	<div id="form">
+		<%= render"items/form"%>
+	</div>
+</div> -->
+<%= link_to 'Edit', edit_menu_path(@menu) %> |
+<%= link_to 'Back', menus_path %>

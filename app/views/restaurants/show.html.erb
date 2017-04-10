@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<!-- <p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Ratings:</strong>
+  <%= @restaurant.ratings %>
+</p>
+
+<p>
+  <strong>Locality:</strong>
+  <%= @restaurant.locality %>
+</p>
+ -->
+
+ 
+ <tr>
+<div id = "menus_wrapper">
+	<%#= render "menus/index" ,{menus:@restaurant.menus}%>
+	<%#= render @restaurant.menus %>
+ 
+   <% @restaurant.menus.each do |menu| %>
+    
+    <td><%= menu.name%></td>    
+    <p><%= menu.description%></p>
+    
+    <% end %>
+</tr>
+	<div id="form">
+		<%= render"menus/form"%>
+	</div>
+</div>
+
+<%#= link_to 'Show Menu',#restaurant_menu_path %>
+<%#= link_to 'Edit', #edit_restaurant_path(@restaurant) %> 
+<%#= link_to 'Back', #restaurants_path %>
