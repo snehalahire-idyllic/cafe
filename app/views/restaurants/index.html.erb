@@ -28,20 +28,10 @@
 
 <br>
 
-<%= form_tag restaurants_path, :method =>'get' do %>
-        <%= text_field_tag :search ,params[:search], placeholder: ' Find a Hotel'%>
-        <%= submit_tag "Search" , :name =>nil %>
 
-<% end %>
 
-<% if @restaurant_search_name %>
-  <% @restaurant_search_name.each do |x| %>
-    <%= x.name%>
-    <%= x.ratings%>
-    <%= x.locality%>
-  <% end %>
-<%end %>
 
- 
- <%= link_to 'New Restaurant', new_restaurant_path %>
+
+
+
 

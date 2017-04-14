@@ -1,0 +1,27 @@
+Class CommentsController < ApplicationController
+  before_action :set_user
+  before_action :set_post
+  
+  def create
+  @comment = @post.comments.create(comment_params)
+
+  if @comment.save
+    redirect_to @post
+  else
+    flash.now[:danger] = "error"
+  end
+  end
+
+private
+
+   set_post
+      @post = User.posts.find(params[:post_id])
+   end
+
+   set_user
+      @user = User.find(params[:user_id])
+   end
+   
+   comment_params
+     params[:comment].permit()
+end

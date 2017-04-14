@@ -2,25 +2,25 @@ class RestaurantsController < ApplicationController
   before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def home
-  end
-
+    @q = Restaurant.includes(menus:[:items]).references(menus:[:items]).ransack(params[:q])
+    #@q = Restaurant.ransack(params[:q])
+    @restaurant_search  = @q.result
+   end
+ 
   def index
     @restaurants = Restaurant.all
-    @restaurant_search_name = Restaurant.search_by_name(params[:search])
-    @restaurant_search_locality = Restaurant.search_by_locality(params[:search])
+    # @restaurant_search_name = Restaurant.search_by_name(params[:search])
+    # @restaurant_search_locality = Restaurant.search_by_locality(params[:search])
 
   end
 
   def show
-
-    #respond_to do |format|
-    # format.html  {redirect_to restaurant_path}
-    #format.json { render json: @restaurant }
-    #end
   end
+
 
   def new
     @restaurant = Restaurant.new
+
   end
 
   def edit

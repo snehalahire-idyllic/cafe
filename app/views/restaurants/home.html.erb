@@ -1,2 +1,55 @@
 <h1>Welcome to my Restaurant Database!!</h1>
-<div><%= link_to "Restaurant Index", restaurants_path %></div>
+<h2>Search your favoutrite Restaurant or item</h2>
+
+<div><%#= link_to "Search your favoutrite Restaurant or item", restaurants_path %></div>
+
+  
+<%= search_form_for @q, url: root_path do |f| %>
+ 
+   <%= f.label :name %>
+  <%= f.search_field :name_cont %>
+
+   <%= f.label :ratings %>
+  <%= f.search_field :ratings_gt%>
+
+   <%= f.label :locality %>
+   <%= f.search_field :locality_cont%>
+
+   <%= f.label :item_name%>
+   <%= f.search_field :menus_items_name_cont%>
+
+   <%= f.sort_link :ratings%>
+<%= f.submit %>
+<% end %>
+ 
+<% if params[:q]%> 
+	<table>
+    	<thead>
+        	<tr>
+        		<th><%= sort_link(@q, :name, 'Name') %></th>
+        		<th colspan="2" >Rating</th>
+        		<th colspan="2" >Locality</th>
+       		</tr>
+       	</thead>
+       	<tbody>
+       		<% @restaurant_search.each do |x| %>
+       		 	<tr>
+   					<td><a href= <%="/restaurants/#{x.id}/menus "%> ><%= x.name%></a></td>
+   					       		 		<%#binding.pry%>
+   					<% menus = x.menus %>
+    				<%= menus.each do |menu| %>
+    				<% items = menu.items %>
+   					<%= items.each do |item| %>
+    				<%=	puts item.name %>
+   					<% end %>
+   					<%end%>
+
+      				<td><%= x.ratings%></td>
+    				<td><%= x.locality%></td>
+				</tr>
+       		<% end %>
+       	</tbody>   
+	</table>
+<% end %>
+</body>
+</html> 
